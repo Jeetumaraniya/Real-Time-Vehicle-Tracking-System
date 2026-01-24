@@ -1,0 +1,6 @@
+Seed Error: ValidationError: type: `car` is not a valid enum value for path `type`.
+Stack: ValidationError: Vehicle validation failed: type: `car` is not a valid enum value for path `type`.
+    at Document.invalidate (D:\Vehicle Tracking System\backend\node_modules\mongoose\lib\document.js:3373:32)
+    at D:\Vehicle Tracking System\backend\node_modules\mongoose\lib\document.js:3134:17
+    at D:\Vehicle Tracking System\backend\node_modules\mongoose\lib\schemaType.js:1446:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:84:11)

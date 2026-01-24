@@ -1,0 +1,13 @@
+
+> vehicle-tracking-backend@1.0.0 dev
+> nodemon server.js
+
+[33m[nodemon] 3.1.11[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,cjs,json[39m
+[32m[nodemon] starting `node server.js`[39m
+≡ƒÜÇ Server running on port 5000
+≡ƒôí Socket.io ready for connections
+≡ƒöù API available at http://localhost:5000/api
+MongoDB Connected: localhost
