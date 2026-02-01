@@ -101,7 +101,10 @@ const Vehicles = () => {
         setEditingVehicle(null);
     };
 
-    const getStatusBadge = (status) => {
+    const getStatusBadge = (status, incidentStatus) => {
+        if (incidentStatus && incidentStatus !== 'none') {
+            return 'badge-warning'; // Or more specific colors if you have CSS classes for them
+        }
         const badges = {
             'active': 'badge-success',
             'en-route': 'badge-info',
@@ -159,9 +162,9 @@ const Vehicles = () => {
                                     <td>{vehicle.capacity} seats</td>
                                     <td>{vehicle.route?.routeName || <span className="text-muted">Not assigned</span>}</td>
                                     <td>
-                                        <span className={`badge ${getStatusBadge(vehicle.status)}`}>
+                                        <span className={`badge ${getStatusBadge(vehicle.status, vehicle.incidentStatus)}`}>
                                             <span className={`status-dot ${vehicle.status}`}></span>
-                                            {vehicle.status}
+                                            {vehicle.incidentStatus !== 'none' ? vehicle.incidentStatus.replace('_', ' ').toUpperCase() : vehicle.status}
                                         </span>
                                     </td>
                                     <td>

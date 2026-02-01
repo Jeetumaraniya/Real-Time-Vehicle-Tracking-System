@@ -18,7 +18,11 @@ const Login = () => {
         const result = await login(email, password);
 
         if (result.success) {
-            navigate('/dashboard');
+            if (result.user.role === 'driver') {
+                navigate('/driver-dashboard');
+            } else {
+                navigate('/dashboard');
+            }
         } else {
             setError(result.message);
         }

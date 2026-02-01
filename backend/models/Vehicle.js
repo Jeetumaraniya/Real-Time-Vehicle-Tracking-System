@@ -36,6 +36,18 @@ const vehicleSchema = new mongoose.Schema({
         enum: ['active', 'inactive', 'maintenance', 'en-route'],
         default: 'inactive'
     },
+    incidentStatus: {
+        type: String,
+        enum: ['none', 'accident', 'puncture', 'breakdown', 'traffic_heavy', 'diversion', 'weather_bad', 'medical_emergency', 'other'],
+        default: 'none'
+    },
+    incidentDescription: {
+        type: String,
+        default: ''
+    },
+    incidentTime: {
+        type: Date
+    },
     currentLocation: {
         latitude: {
             type: Number,

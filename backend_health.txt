@@ -1,0 +1,49 @@
+* Host localhost:5000 was resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying [::1]:5000...
+* Established connection to localhost (::1 port 5000) from ::1 port 56170 
+* using HTTP/1.x
+> GET /api/health HTTP/1.1
+
+> Host: localhost:5000
+
+> User-Agent: curl/8.16.0
+
+> Accept: */*
+
+> 
+
+* Request completely sent off
+< HTTP/1.1 200 OK
+
+< X-Powered-By: Express
+
+< Access-Control-Allow-Origin: http://localhost:3000
+
+< Vary: Origin
+
+< Access-Control-Allow-Credentials: true
+
+< Content-Type: application/json; charset=utf-8
+
+< Content-Length: 85
+
+< ETag: W/"55-gUEFjZD37FHzVosdVt24bjve5+o"
+
+< Date: Sun, 01 Feb 2026 10:56:26 GMT
+
+< Connection: keep-alive
+
+< Keep-Alive: timeout=5
+
+< 
+
+{ [85 bytes data]
+
+100    85  100    85    0     0  36278      0 --:--:-- --:--:-- --:--:-- 42500
+* Connection #0 to host localhost:5000 left intact
+{"success":true,"message":"Server is running","timestamp":"2026-02-01T10:56:26.301Z"}

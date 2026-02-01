@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { statsAPI, vehicleAPI } from '../services/api';
+import io from 'socket.io-client';
 
 const Dashboard = () => {
     const [stats, setStats] = useState({
@@ -11,6 +12,33 @@ const Dashboard = () => {
     });
     const [recentVehicles, setRecentVehicles] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        // Connect to socket
+        const socket = io('http://localhost:5000');
+
+        socket.on('connect', () => {
+            console.log('Connected to socket server');
+        });
+
+        // Listen for incidents
+        socket.on('vehicleIncident', (data) => {
+            // For now, using browser alert or simple notification logic
+            // Ideally this should be a toast
+            if (data.incidentStatus !== 'none') {
+                alert(`🚨 ALERT: Vehicle Reported ${data.incidentStatus.toUpperCase()}\nDescription: ${data.incidentDescription}`);
+                // Refresh dashboard data to reflect status change
+                fetchDashboardData();
+            } else {
+                // Incident resolved
+                fetchDashboardData();
+            }
+        });
+
+        return () => {
+            socket.disconnect();
+        };
+    }, []);
 
     useEffect(() => {
         fetchDashboardData();
@@ -32,7 +60,21 @@ const Dashboard = () => {
         }
     };
 
-    const getStatusBadge = (status) => {
+    const getStatusBadge = (status, incidentStatus) => {
+        if (incidentStatus && incidentStatus !== 'none') {
+            const incidentBadges = {
+                'accident': 'badge-error',
+                'medical_emergency': 'badge-error',
+                'puncture': 'badge-warning',
+                'breakdown': 'badge-warning',
+                'traffic_heavy': 'badge-warning',
+                'diversion': 'badge-info',
+                'weather_bad': 'badge-info',
+                'other': 'badge-neutral'
+            };
+            return incidentBadges[incidentStatus] || 'badge-warning';
+        }
+
         const badges = {
             'active': 'badge-success',
             'en-route': 'badge-info',
@@ -142,9 +184,9 @@ const Dashboard = () => {
                                             </td>
                                             <td>{vehicle.route?.routeName || 'Not assigned'}</td>
                                             <td>
-                                                <span className={`badge ${getStatusBadge(vehicle.status)}`}>
+                                                <span className={`badge ${getStatusBadge(vehicle.status, vehicle.incidentStatus)}`}>
                                                     <span className={`status-dot ${vehicle.status}`}></span>
-                                                    {vehicle.status}
+                                                    {vehicle.incidentStatus !== 'none' ? vehicle.incidentStatus.replace('_', ' ').toUpperCase() : vehicle.status}
                                                 </span>
                                             </td>
                                         </tr>

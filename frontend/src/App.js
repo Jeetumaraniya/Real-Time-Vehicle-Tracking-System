@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import Vehicles from './pages/Vehicles';
 import RoutesPage from './pages/Routes';
 import LiveTracking from './pages/LiveTracking';
+import DriverDashboard from './pages/DriverDashboard';
 import Sidebar from './components/Sidebar';
 
 // Protected Route Component
@@ -90,6 +91,15 @@ function AppContent() {
                         <AppLayout>
                             <RoutesPage />
                         </AppLayout>
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route
+                path="/driver-dashboard"
+                element={
+                    <ProtectedRoute>
+                        <DriverDashboard />
                     </ProtectedRoute>
                 }
             />

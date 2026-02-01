@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
             setToken(newToken);
             setUser(userData);
 
-            return { success: true };
+            return { success: true, user: userData };
         } catch (error) {
             return {
                 success: false,

@@ -255,3 +255,53 @@ exports.getActiveVehicles = async (req, res) => {
         });
     }
 };
+
+// @desc    Report vehicle incident
+// @route   PUT /api/vehicles/:id/incident
+// @access  Private (Driver/Admin)
+exports.reportIncident = async (req, res) => {
+    try {
+        const { incidentStatus, incidentDescription } = req.body;
+
+        const vehicle = await Vehicle.findByIdAndUpdate(
+            req.params.id,
+            {
+                incidentStatus,
+                incidentDescription,
+                incidentTime: incidentStatus !== 'none' ? Date.now() : null,
+                // If incident is cleared ('none'), revert status to 'active', else set to 'maintenance'
+                status: incidentStatus === 'none' ? 'active' : 'maintenance'
+            },
+            { new: true }
+        ).populate('route');
+
+        if (!vehicle) {
+            return res.status(404).json({
+                success: false,
+                message: 'Vehicle not found'
+            });
+        }
+
+        // Emit incident update via Socket.io
+        if (req.io) {
+            req.io.emit('vehicleIncident', {
+                vehicleId: vehicle._id,
+                incidentStatus: vehicle.incidentStatus,
+                incidentDescription: vehicle.incidentDescription,
+                incidentTime: vehicle.incidentTime,
+                status: vehicle.status
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            data: vehicle
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Error reporting incident',
+            error: error.message
+        });
+    }
+};
