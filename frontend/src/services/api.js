@@ -49,7 +49,8 @@ export const vehicleAPI = {
     create: (data) => api.post('/vehicles', data),
     update: (id, data) => api.put(`/vehicles/${id}`, data),
     delete: (id) => api.delete(`/vehicles/${id}`),
-    updateLocation: (id, data) => api.put(`/vehicles/${id}/location`, data)
+    updateLocation: (id, data) => api.put(`/vehicles/${id}/location`, data),
+    reportIncident: (id, data) => api.put(`/vehicles/${id}/incident`, data)
 };
 
 export const routeAPI = {

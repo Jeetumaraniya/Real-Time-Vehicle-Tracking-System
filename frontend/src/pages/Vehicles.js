@@ -83,6 +83,18 @@ const Vehicles = () => {
         }
     };
 
+    const handleResolveIncident = async (id) => {
+        if (window.confirm('Mark this incident as resolved and return vehicle to active status?')) {
+            try {
+                await vehicleAPI.reportIncident(id, { incidentStatus: 'none', incidentDescription: '' });
+                fetchData();
+            } catch (error) {
+                console.error('Error resolving incident:', error);
+                alert('Failed to resolve incident.');
+            }
+        }
+    };
+
     const openAddModal = () => {
         setEditingVehicle(null);
         setFormData({
@@ -175,6 +187,14 @@ const Vehicles = () => {
                                                     <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
                                                 </svg>
                                             </button>
+                                            {vehicle.incidentStatus !== 'none' && (
+                                                <button className="btn btn-icon" onClick={() => handleResolveIncident(vehicle._id)} title="Resolve Incident" style={{ color: '#10b981' }}>
+                                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                                        <polyline points="22 4 12 14.01 9 11.01" />
+                                                    </svg>
+                                                </button>
+                                            )}
                                             <button className="btn btn-icon" onClick={() => handleDelete(vehicle._id)} title="Delete" style={{ color: '#ef4444' }}>
                                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                                     <polyline points="3 6 5 6 21 6" />

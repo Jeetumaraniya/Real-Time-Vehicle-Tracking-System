@@ -39,9 +39,9 @@ const seedData = async () => {
         });
         console.log('Admin user created:', admin.email);
 
-        // Create 10 sample drivers
+        // Create 11 sample drivers
         const drivers = [];
-        for (let i = 1; i <= 10; i++) {
+        for (let i = 1; i <= 11; i++) {
             const driver = await User.create({
                 username: `driver${i}`,
                 email: `driver${i}@transport.com`,
@@ -50,7 +50,7 @@ const seedData = async () => {
             });
             drivers.push(driver);
         }
-        console.log('10 Sample drivers created');
+        console.log('11 Sample drivers created');
 
         // --- ROUTES ---
 
@@ -418,7 +418,7 @@ const seedData = async () => {
             type: 'minibus',
             capacity: 20,
             route: route9._id,
-            driver: drivers[0]._id, // Recycling driver 1
+            driver: drivers[10]._id, // Use driver 11
             status: 'en-route',
             currentLocation: {
                 latitude: 21.5260,

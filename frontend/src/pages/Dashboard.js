@@ -26,7 +26,7 @@ const Dashboard = () => {
             // For now, using browser alert or simple notification logic
             // Ideally this should be a toast
             if (data.incidentStatus !== 'none') {
-                alert(`🚨 ALERT: Vehicle Reported ${data.incidentStatus.toUpperCase()}\nDescription: ${data.incidentDescription}`);
+                alert(`🚨 ALERT: Vehicle ${data.registrationNumber} Reported ${data.incidentStatus.toUpperCase()}\nDescription: ${data.incidentDescription}`);
                 // Refresh dashboard data to reflect status change
                 fetchDashboardData();
             } else {

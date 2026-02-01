@@ -286,6 +286,7 @@ exports.reportIncident = async (req, res) => {
         if (req.io) {
             req.io.emit('vehicleIncident', {
                 vehicleId: vehicle._id,
+                registrationNumber: vehicle.registrationNumber,
                 incidentStatus: vehicle.incidentStatus,
                 incidentDescription: vehicle.incidentDescription,
                 incidentTime: vehicle.incidentTime,
