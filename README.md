@@ -1,32 +1,47 @@
 # Vehicle Tracking System
 
-## How to Run
+A real-time vehicle tracking application built with the MERN stack (MongoDB, Express, React, Node.js) and Socket.IO.
 
-### prerequisites
-- Node.js installed
+## 🚀 Features
 
-### 1. Backend
-Navigate to the backend directory and install dependencies:
-```bash
-cd backend
-npm install
-```
+- **Real-time Tracking**: Live vehicle updates on an interactive map.
+- **Role-based Access**: Separate dashboards for Admins and Drivers.
+- **Route Management**: Create and assign routes to vehicles.
+- **History Playback**: View historical data of vehicle movements.
 
-Start the backend server:
-```bash
-npm run dev
-```
-The server will start on port 5000 (or as defined in .env).
+## 🛠️ Technology Stack
 
-### 2. Frontend
-Open a new terminal, navigate to the frontend directory and install dependencies:
-```bash
-cd frontend
-npm install
-```
+- **Frontend**: React, Leaflet, Socket.IO Client
+- **Backend**: Node.js, Express, Socket.IO
+- **Database**: MongoDB
 
-Start the frontend application:
-```bash
-npm start
-```
-The application will usually open at http://localhost:3000.
+## 📦 Installation & Setup
+
+For a detailed setup guide, please refer to [SETUP.md](./SETUP.md).
+
+### Quick Start
+
+1.  **Prerequisites**: Ensure Node.js and MongoDB are installed and running.
+
+2.  **Backend Setup**:
+    ```bash
+    cd backend
+    npm install
+    # Create a .env file based on the documentation or use the default
+    npm run dev
+    ```
+
+3.  **Frontend Setup**:
+    ```bash
+    cd frontend
+    npm install
+    npm start
+    ```
+
+4.  **Access**:
+    - Application: `http://localhost:3000`
+    - API: `http://localhost:5000`
+
+## 📝 License
+
+This project is for educational purposes.
