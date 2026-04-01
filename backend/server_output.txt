@@ -1,4 +1,0 @@
-≡ƒÜÇ Server running on port 5000
-≡ƒôí Socket.io ready for connections
-≡ƒöù API available at http://localhost:5000/api
-MongoDB Connected: localhost

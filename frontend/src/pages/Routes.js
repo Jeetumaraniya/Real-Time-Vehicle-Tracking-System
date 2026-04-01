@@ -53,13 +53,13 @@ const RoutesPage = () => {
                 ...formData,
                 startPoint: {
                     ...formData.startPoint,
-                    latitude: parseFloat(formData.startPoint.latitude),
-                    longitude: parseFloat(formData.startPoint.longitude)
+                    latitude: parseFloat(formData.startPoint.latitude) || 0,
+                    longitude: parseFloat(formData.startPoint.longitude) || 0
                 },
                 endPoint: {
                     ...formData.endPoint,
-                    latitude: parseFloat(formData.endPoint.latitude),
-                    longitude: parseFloat(formData.endPoint.longitude)
+                    latitude: parseFloat(formData.endPoint.latitude) || 0,
+                    longitude: parseFloat(formData.endPoint.longitude) || 0
                 },
                 distance: parseFloat(formData.distance) || 0,
                 estimatedDuration: parseInt(formData.estimatedDuration) || 0
@@ -352,34 +352,7 @@ const RoutesPage = () => {
                                         required
                                     />
                                 </div>
-                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                                    <div className="form-group" style={{ marginBottom: 0 }}>
-                                        <label className="form-label">Latitude</label>
-                                        <input
-                                            type="number"
-                                            step="any"
-                                            name="startPoint.latitude"
-                                            className="form-input"
-                                            placeholder="28.6139"
-                                            value={formData.startPoint.latitude}
-                                            onChange={handleInputChange}
-                                            required
-                                        />
-                                    </div>
-                                    <div className="form-group" style={{ marginBottom: 0 }}>
-                                        <label className="form-label">Longitude</label>
-                                        <input
-                                            type="number"
-                                            step="any"
-                                            name="startPoint.longitude"
-                                            className="form-input"
-                                            placeholder="77.2090"
-                                            value={formData.startPoint.longitude}
-                                            onChange={handleInputChange}
-                                            required
-                                        />
-                                    </div>
-                                </div>
+
                             </div>
 
                             {/* End Point */}
@@ -397,34 +370,7 @@ const RoutesPage = () => {
                                         required
                                     />
                                 </div>
-                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                                    <div className="form-group" style={{ marginBottom: 0 }}>
-                                        <label className="form-label">Latitude</label>
-                                        <input
-                                            type="number"
-                                            step="any"
-                                            name="endPoint.latitude"
-                                            className="form-input"
-                                            placeholder="28.5355"
-                                            value={formData.endPoint.latitude}
-                                            onChange={handleInputChange}
-                                            required
-                                        />
-                                    </div>
-                                    <div className="form-group" style={{ marginBottom: 0 }}>
-                                        <label className="form-label">Longitude</label>
-                                        <input
-                                            type="number"
-                                            step="any"
-                                            name="endPoint.longitude"
-                                            className="form-input"
-                                            placeholder="77.3910"
-                                            value={formData.endPoint.longitude}
-                                            onChange={handleInputChange}
-                                            required
-                                        />
-                                    </div>
-                                </div>
+
                             </div>
 
                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>

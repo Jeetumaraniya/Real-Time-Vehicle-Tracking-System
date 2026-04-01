@@ -55,7 +55,8 @@ const Vehicles = () => {
             closeModal();
         } catch (error) {
             console.error('Error saving vehicle:', error);
-            alert('Error saving vehicle. Please try again.');
+            const errorMsg = error.response?.data?.message || error.response?.data?.error || error.message;
+            alert('Error saving vehicle: ' + errorMsg);
         }
     };
 
